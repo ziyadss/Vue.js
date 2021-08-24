@@ -1,0 +1,44 @@
+<template>
+  <div class="container">
+    <UsersList />
+  </div>
+  <div class="container">
+    <div class="block" :class="{ animate: animatedBlock }"></div>
+    <button @click="animateBlock">Animate</button>
+  </div>
+
+  <div class="container">
+    <!-- for transition, we can change specific classes names -->
+    <!-- name="para"
+      @after-enter="afterEnter"
+      @after-leave="afterLeave" -->
+    <transition
+      :css="false"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @enter-cancelled="enterCancelled"
+      @leave-cancelled="leaveCancelled"
+    >
+      <p v-if="paraIsVisible">This is only sometimes visible...</p>
+    </transition>
+    <button @click="toggleParagraph">Toggle Paragraph</button>
+  </div>
+
+  <div class="container">
+    <transition name="fade-button" mode="out-in">
+      <button @click="toggleUsers" v-if="!showUsers">Show Users</button>
+      <button @click="toggleUsers" v-else>Hide Users</button>
+    </transition>
+  </div>
+
+  <BaseModal @close="hideDialog" :open="dialogIsVisible">
+    <p>This is a test dialog!</p>
+    <button @click="hideDialog">Close it!</button>
+  </BaseModal>
+
+  <div class="container">
+    <button @click="showDialog">Show Dialog</button>
+  </div>
+</template>
