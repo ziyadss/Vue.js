@@ -6,7 +6,7 @@
     </h3>
     <ul>
       <cart-item
-        v-for="item in cart.items"
+        v-for="item in cartItems"
         :key="item.productId"
         :prod-id="item.productId"
         :title="item.title"
@@ -19,17 +19,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import CartItem from '../components/cart/CartItem.vue';
 
 export default {
-  inject: ['cart'],
   components: {
     CartItem,
   },
   computed: {
-    cartTotal() {
-      return this.cart.total.toFixed(2);
-    },
+    ...mapGetters('cart', {
+      cartItems: 'items',
+      cartTotal: 'total',
+    }),
   },
 };
 </script>

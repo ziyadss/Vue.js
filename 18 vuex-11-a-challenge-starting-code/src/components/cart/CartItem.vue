@@ -22,8 +22,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
-  inject: ['removeProductFromCart'],
   props: ['prodId', 'title', 'image', 'price', 'qty'],
   computed: {
     itemTotal() {
@@ -34,6 +34,9 @@ export default {
     remove() {
       this.removeProductFromCart(this.prodId);
     },
+    ...mapActions({
+      removeProductFromCart: 'cart/removeProduct',
+    }),
   },
 };
 </script>
