@@ -20,22 +20,22 @@ export default {
   inject: ['teams', 'users'],
   props: ['teamID'],
   components: {
-    UserItem
+    UserItem,
   },
   data() {
     return {
       teamName: '',
-      members: []
+      members: [],
     };
   },
   methods: {
     loadTeam() {
-      const team = this.teams.find(team => team.id === this.teamID);
+      const team = this.teams.find((team) => team.id === this.teamID);
       this.teamName = team.name;
 
       const memberIDs = team.members;
-      this.members = this.users.filter(user => memberIDs.includes(user.id));
-    }
+      this.members = this.users.filter((user) => memberIDs.includes(user.id));
+    },
   },
   created() {
     this.loadTeam(this.teamID);
@@ -43,14 +43,14 @@ export default {
       this.members.sort((a, b) => a.fullName.localeCompare(b.fullName));
   },
   beforeRouteUpdate(to, from, next) {
-    console.log('TeamMembers beforeRouteUpdate')
+    console.log('TeamMembers beforeRouteUpdate');
     next();
   },
   watch: {
     teamID(newID) {
       this.loadTeam(newID);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -17,7 +17,7 @@ export default {
       paraIsVisible: false,
       showUsers: false,
       enterInterval: null,
-      leaveInterval: null
+      leaveInterval: null,
     };
   },
   methods: {
@@ -84,13 +84,13 @@ export default {
       console.log('leaveCancelled');
       console.log(el, a, b);
       clearInterval(this.leaveInterval);
-    }
+    },
   },
   computed: {
     usersButton() {
       return this.showUsers ? 'Hide Users' : 'Show Users';
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -188,8 +188,6 @@ button:active {
 .fade-button-leave-from {
   opacity: 1;
 }
-
-
 
 .route-enter-active {
   animation: slide-scale 0.4s ease-out reverse;

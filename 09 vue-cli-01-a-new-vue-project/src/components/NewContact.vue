@@ -18,19 +18,19 @@
 export default {
   data() {
     return {
-      contact: { name: "", phone: "", email: "", isFav: false },
+      contact: { name: '', phone: '', email: '', isFav: false },
     };
   },
   emits: {
-    "add-contact": function (contact) {
-      if (!contact.name) console.warn("Name missing");
+    'add-contact': function (contact) {
+      if (!contact.name) console.warn('Name missing');
       return contact.name;
     },
   },
   methods: {
     addContact() {
-      this.$emit("add-contact", this.contact);
-      this.contact = { name: "", phone: "", email: "", isFav: false };
+      this.$emit('add-contact', this.contact);
+      this.contact = { name: '', phone: '', email: '', isFav: false };
     },
   },
 };

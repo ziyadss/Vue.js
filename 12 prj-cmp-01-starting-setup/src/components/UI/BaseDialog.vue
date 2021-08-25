@@ -20,13 +20,13 @@
 </template>
 
 <script>
-import BaseButton from "./BaseButton.vue";
+import BaseButton from './BaseButton.vue';
 export default {
   components: { BaseButton },
   props: {
-    title: { type: String, required: false, default: "" },
+    title: { type: String, required: false, default: '' },
   },
-  emits: ["close"],
+  emits: ['close'],
 };
 </script>
 

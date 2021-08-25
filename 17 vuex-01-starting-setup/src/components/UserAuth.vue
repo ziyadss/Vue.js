@@ -8,12 +8,12 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapGetters({
-      auth: 'loggedIn'
-    })
+      auth: 'loggedIn',
+    }),
   },
   methods: {
-    ...mapActions(['logout', 'login'])
-  }
+    ...mapActions(['logout', 'login']),
+  },
 };
 </script>
 

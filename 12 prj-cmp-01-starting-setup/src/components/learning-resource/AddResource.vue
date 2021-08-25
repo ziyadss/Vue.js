@@ -44,7 +44,7 @@
 export default {
   data() {
     return {
-      resource: { name: "", description: "", url: "" },
+      resource: { name: '', description: '', url: '' },
       invalidInput: false,
     };
   },

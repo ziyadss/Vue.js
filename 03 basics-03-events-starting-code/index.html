@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vue Basics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://unpkg.com/vue@next" defer></script>
-  <script src="app.js" defer></script>
-</head>
-
-<body>
-  <header>
-    <h1>Vue Events</h1>
-  </header>
-  <section id="events">
-    <h2>Events in Action</h2>
-    <button @click="inc(10)" @click.right.prevent="inc()">Add 10/1</button>
-    <button @click="dec(10)" @click.right.prevent="dec()">Remove 10/1</button>
-    <p v-once>Starting: {{ counter }}</p>
-    <p>Result: {{ counter }}</p>
-    <!-- two-way <input v-model="name" type="text"> -->
-    <!-- from data to display <input :value="name" type="text"> -->
-    <!-- from display to function <input @input="setName($event, '')" type="text"> -->
-    <input v-model="fName" @keyup.enter="confirmName" type="text">
-    <input v-model="lName" @keyup.enter="confirmName" type="text">
-    <button @click="resetInput">Reset Input</button>
-    <p>Your Name: {{ fullName }}</p>
-    <form @submit.prevent="submitForm">
-      <input type="text">
-      <button>Sign Up</button>
-    </form>
-  </section>
-</body>
-
+  <body>
+    <header>
+      <h1>Vue Events</h1>
+    </header>
+    <section id="events">
+      <h2>Events in Action</h2>
+      <button @click="inc(10)" @click.right.prevent="inc()">Add 10/1</button>
+      <button @click="dec(10)" @click.right.prevent="dec()">Remove 10/1</button>
+      <p v-once>Starting: {{ counter }}</p>
+      <p>Result: {{ counter }}</p>
+      <!-- two-way <input v-model="name" type="text"> -->
+      <!-- from data to display <input :value="name" type="text"> -->
+      <!-- from display to function <input @input="setName($event, '')" type="text"> -->
+      <input v-model="fName" @keyup.enter="confirmName" type="text" />
+      <input v-model="lName" @keyup.enter="confirmName" type="text" />
+      <button @click="resetInput">Reset Input</button>
+      <p>Your Name: {{ fullName }}</p>
+      <form @submit.prevent="submitForm">
+        <input type="text" />
+        <button>Sign Up</button>
+      </form>
+    </section>
+  </body>
 </html>

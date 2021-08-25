@@ -54,33 +54,33 @@
 export default {
   data() {
     return {
-      enteredName: "",
+      enteredName: '',
       chosenRating: null,
       invalidInput: false,
       error: null,
     };
   },
-  emits: ["survey-submit"],
+  emits: ['survey-submit'],
   methods: {
     submitSurvey() {
-      this.invalidInput = this.enteredName === "" || !this.chosenRating;
+      this.invalidInput = this.enteredName === '' || !this.chosenRating;
       if (this.invalidInput) return;
 
       this.error = null;
 
       this.$http
         .post(
-          "https://vue-http-demo-4791b-default-rtdb.europe-west1.firebasedatabase.app/surveys.json",
+          'https://vue-http-demo-4791b-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
           { name: this.enteredName, rating: this.chosenRating }
         )
         .then(() => {
-          this.enteredName = "";
+          this.enteredName = '';
           this.chosenRating = null;
-          this.$emit("survey-submit");
+          this.$emit('survey-submit');
         })
         .catch((error) => {
           console.log(error);
-          this.error = "Something went wrong - please try again later.";
+          this.error = 'Something went wrong - please try again later.';
         });
     },
   },
@@ -92,7 +92,7 @@ export default {
   margin: 0.5rem 0;
 }
 
-input[type="text"] {
+input[type='text'] {
   display: block;
   width: 20rem;
   margin-top: 0.5rem;

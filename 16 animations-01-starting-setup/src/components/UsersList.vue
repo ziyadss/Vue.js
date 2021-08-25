@@ -23,29 +23,29 @@ export default {
         { id: 2, name: 'Manu' },
         { id: 3, name: 'Julie' },
         { id: 4, name: 'Angela' },
-        { id: 5, name: 'Michael' }
+        { id: 5, name: 'Michael' },
       ],
-      newUserName: ''
+      newUserName: '',
     };
   },
   methods: {
     addUser() {
       this.users.push({
         id: this.users[this.users.length - 1].id + 1,
-        name: this.newUserName
+        name: this.newUserName,
       });
       this.newUserName = '';
     },
     removeUser(id) {
-      const idx = this.users.findIndex(user => user.id === id);
+      const idx = this.users.findIndex((user) => user.id === id);
       this.users.splice(idx, 1);
-    }
+    },
   },
   computed: {
     usersReversed() {
       return this.users.slice().reverse();
-    }
-  }
+    },
+  },
 };
 </script>
 

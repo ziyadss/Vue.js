@@ -8,8 +8,8 @@ export default {
   computed: {
     counter() {
       return this.$store.getters['counter/normalizedCount'];
-    }
-  }
+    },
+  },
 };
 </script>
 

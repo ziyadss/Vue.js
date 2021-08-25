@@ -1,11 +1,11 @@
 <template>
   <li>
-    <h2>{{ name }}{{ isFav ? " ♥" : "" }}</h2>
+    <h2>{{ name }}{{ isFav ? ' ♥' : '' }}</h2>
     <button @click="toggleDetails">
-      {{ expanded ? "Hide Details" : "Show Details" }}
+      {{ expanded ? 'Hide Details' : 'Show Details' }}
     </button>
     <button @click="toggleFav">
-      {{ isFav ? "Unfavorite" : "Favorite" }}
+      {{ isFav ? 'Unfavorite' : 'Favorite' }}
     </button>
     <ul v-if="expanded">
       <li v-if="phone"><strong>Phone:</strong> {{ phone }}</li>
@@ -17,7 +17,7 @@
 
 <script>
 function checkID(id) {
-  if (!id) console.warn("missing ID");
+  if (!id) console.warn('missing ID');
   return id;
 }
 
@@ -32,8 +32,8 @@ export default {
   },
   //emits: ["toggle-favorite"],
   emits: {
-    "toggle-favorite": checkID,
-    "delete-contact": checkID,
+    'toggle-favorite': checkID,
+    'delete-contact': checkID,
   },
   data() {
     return {
@@ -45,10 +45,10 @@ export default {
       this.expanded ^= true;
     },
     toggleFav() {
-      this.$emit("toggle-favorite", this.id);
+      this.$emit('toggle-favorite', this.id);
     },
     deleteContact() {
-      this.$emit("delete-contact", this.id);
+      this.$emit('delete-contact', this.id);
     },
   },
 };

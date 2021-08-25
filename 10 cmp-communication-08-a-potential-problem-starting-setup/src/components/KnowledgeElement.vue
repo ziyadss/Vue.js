@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  inject: ["activateTopic"],
-  props: ["id", "topicName", "description"],
+  inject: ['activateTopic'],
+  props: ['id', 'topicName', 'description'],
 };
 </script>

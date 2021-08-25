@@ -26,9 +26,9 @@ const router = createRouter({
           name: 'team-members',
           path: ':teamID',
           component: TeamMembers,
-          props: true
-        }
-      ]
+          props: true,
+        },
+      ],
     },
     {
       name: 'users',
@@ -37,10 +37,10 @@ const router = createRouter({
       beforeEnter(_to, _from, next) {
         //console.log('users beforeEnter', to, from);
         next();
-      }
+      },
     },
-    { name: 'not-found', path: '/:notFound(.*)', components: NotFound }
-  ]
+    { name: 'not-found', path: '/:notFound(.*)', components: NotFound },
+  ],
 });
 
 router.beforeEach((to, _from, next) => {

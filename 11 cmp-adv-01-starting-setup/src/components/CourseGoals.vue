@@ -10,7 +10,7 @@
 export default {
   data() {
     return {
-      goals: ["Finish the course", "Learn Vue"],
+      goals: ['Finish the course', 'Learn Vue'],
     };
   },
 };

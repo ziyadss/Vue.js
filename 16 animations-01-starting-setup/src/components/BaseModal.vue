@@ -10,7 +10,7 @@
 <script>
 export default {
   props: ['open'],
-  emits: ['close']
+  emits: ['close'],
 };
 </script>
 

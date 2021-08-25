@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import SurveyResult from "./SurveyResult.vue";
+import SurveyResult from './SurveyResult.vue';
 
 export default {
   data() {
@@ -41,7 +41,7 @@ export default {
       this.error = null;
       this.$http
         .get(
-          "https://vue-http-demo-4791b-default-rtdb.europe-west1.firebasedatabase.app/surveys.json"
+          'https://vue-http-demo-4791b-default-rtdb.europe-west1.firebasedatabase.app/surveys.json'
         )
         .then((response) => {
           if (!response.data) this.results = [];
@@ -49,7 +49,7 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          this.error = "Failed to fetch data - please try again later.";
+          this.error = 'Failed to fetch data - please try again later.';
         })
         .finally(() => {
           this.isLoading = false;

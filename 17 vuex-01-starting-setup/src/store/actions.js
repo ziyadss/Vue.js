@@ -4,5 +4,5 @@ export default {
   },
   logout(context) {
     context.commit({ type: 'authenticate', auth: false });
-  }
+  },
 };

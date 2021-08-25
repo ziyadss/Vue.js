@@ -9,11 +9,11 @@ import counter from './counter';
 export default createStore({
   state() {
     return {
-      loggedIn: false
+      loggedIn: false,
     };
   },
   actions: actions,
   mutations: mutations,
   getters: getters,
-  modules: { counter }
+  modules: { counter },
 });

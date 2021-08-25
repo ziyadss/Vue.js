@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import TheHeader from "./components/layout/TheHeader.vue";
-import TheResources from "./components/learning-resource/TheResources.vue";
+import TheHeader from './components/layout/TheHeader.vue';
+import TheResources from './components/learning-resource/TheResources.vue';
 
 export default {
   components: {
@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      title: "RememberMe",
+      title: 'RememberMe',
     };
   },
 };
@@ -28,7 +28,7 @@ export default {
 }
 
 html {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {

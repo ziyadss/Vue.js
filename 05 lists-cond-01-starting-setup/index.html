@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vue Basics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://unpkg.com/vue@next" defer></script>
-  <script src="app.js" defer></script>
-</head>
-
-<body>
-  <header>
-    <h1>Vue Course Goals</h1>
-  </header>
-  <section id="user-goals">
-    <h2>My course goals</h2>
-    <input type="text" v-model="userInput" />
-    <button @click="addGoal">Add Goal</button>
-    <p v-if="!goals.length">No goals have been added yet - please start adding some!</p>
-    <!-- v-show="true"  , better performance, but only use if changes a lot bc stays in DOM -->
-    <!-- v-else-if="true" -->
-    <ul v-else>
-      <!-- but must ensure goal is unique! avoids loss of data bc of DOM reuse -->
-      <li :key="goal" @click="removeGoal(idx)" v-for="(goal, idx) in goals">{{idx+1}}. {{goal}}</li>
-      <!-- @click.stop  on children to not call removeGoal -->
-    </ul>
-    <!--
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goals">
+      <h2>My course goals</h2>
+      <input type="text" v-model="userInput" />
+      <button @click="addGoal">Add Goal</button>
+      <p v-if="!goals.length">
+        No goals have been added yet - please start adding some!
+      </p>
+      <!-- v-show="true"  , better performance, but only use if changes a lot bc stays in DOM -->
+      <!-- v-else-if="true" -->
+      <ul v-else>
+        <!-- but must ensure goal is unique! avoids loss of data bc of DOM reuse -->
+        <li :key="goal" @click="removeGoal(idx)" v-for="(goal, idx) in goals">
+          {{idx+1}}. {{goal}}
+        </li>
+        <!-- @click.stop  on children to not call removeGoal -->
+      </ul>
+      <!--
       v-for="(v,k) in {name: 'Ziyad', age: 21}"
       v-for="n in 10"
-    -->
-  </section>
-</body>
-
+    --></section>
+  </body>
 </html>

@@ -15,9 +15,9 @@ export default {
     //...mapActions(['increment', 'increase'])
     ...mapActions('counter', {
       up: 'increment',
-      inc: 'increase'
-    })
-  }
+      inc: 'increase',
+    }),
+  },
 };
 </script>
 

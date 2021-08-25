@@ -17,11 +17,11 @@ import UserItem from './UserItem.vue';
 export default {
   data() {
     return {
-      changesSaved: false
+      changesSaved: false,
     };
   },
   components: {
-    UserItem
+    UserItem,
   },
   inject: ['users'],
   methods: {
@@ -31,7 +31,7 @@ export default {
     },
     saveChanges() {
       this.changesSaved = true;
-    }
+    },
   },
   beforeRouteEnter(_to, _from, next) {
     //console.log('UsersList beforeRouteEnter', to, from);
@@ -42,7 +42,7 @@ export default {
     const leave =
       this.changesSaved || confirm('Are you sure? You have unsaved changes.');
     next(leave);
-  }
+  },
 };
 </script>
 

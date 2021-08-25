@@ -21,16 +21,16 @@ export default {
       contacts: [
         {
           id: 1,
-          name: "Manuel Lorenz",
-          phone: "0123 45678 90",
-          email: "manuel@localhost.com",
+          name: 'Manuel Lorenz',
+          phone: '0123 45678 90',
+          email: 'manuel@localhost.com',
           isFav: true,
         },
         {
           id: 2,
-          name: "Julie Jones",
-          phone: "0987 654421 21",
-          email: "julie@localhost.com",
+          name: 'Julie Jones',
+          phone: '0987 654421 21',
+          email: 'julie@localhost.com',
           isFav: false,
         },
       ],
@@ -57,13 +57,13 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 
 body {

@@ -12,9 +12,9 @@ export default {
     } */
     //...mapGetters(['ogCount'])
     ...mapGetters('counter', {
-      count: 'ogCount'
-    })
-  }
+      count: 'ogCount',
+    }),
+  },
 };
 </script>
 

@@ -121,15 +121,15 @@
 </template>
 
 <script>
-import RatingControl from "./RatingControl.vue";
+import RatingControl from './RatingControl.vue';
 export default {
   components: { RatingControl },
   data() {
     return {
-      userName: "",
+      userName: '',
       userNameValid: null,
       userAge: null,
-      referrer: "wom",
+      referrer: 'wom',
       interest: [],
       how: null,
       confirmTerms: false,
@@ -138,20 +138,20 @@ export default {
   },
   methods: {
     validateInput() {
-      this.userNameValid = this.userName !== "";
+      this.userNameValid = this.userName !== '';
     },
     submitForm() {
-      console.log("Username: " + this.userName);
-      console.log("User age: " + this.userAge);
-      console.log("Referrer: " + this.referrer);
-      console.log("Interest: " + this.interest);
-      console.log("How: " + this.how);
-      console.log("Terms: " + this.confirmTerms);
-      console.log("Rating: " + this.rating);
+      console.log('Username: ' + this.userName);
+      console.log('User age: ' + this.userAge);
+      console.log('Referrer: ' + this.referrer);
+      console.log('Interest: ' + this.interest);
+      console.log('How: ' + this.how);
+      console.log('Terms: ' + this.confirmTerms);
+      console.log('Rating: ' + this.rating);
 
-      this.userName = "";
+      this.userName = '';
       this.userAge = null;
-      this.referrer = "wom";
+      this.referrer = 'wom';
       this.interest = [];
       this.how = null;
       this.confirmTerms = false;
@@ -204,15 +204,15 @@ select {
   width: auto;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+input[type='checkbox'],
+input[type='radio'] {
   display: inline-block;
   width: auto;
   margin-right: 1rem;
 }
 
-input[type="checkbox"] + label,
-input[type="radio"] + label {
+input[type='checkbox'] + label,
+input[type='radio'] + label {
   font-weight: normal;
 }
 

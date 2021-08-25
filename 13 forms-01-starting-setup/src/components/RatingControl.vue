@@ -18,10 +18,10 @@ export default {
     modelValue: String,
     rating: { type: String, default: null },
   },
-  emits: ["update:rating"],
+  emits: ['update:rating'],
   methods: {
     activate(option) {
-      this.$emit("update:rating", option);
+      this.$emit('update:rating', option);
     },
   },
 };

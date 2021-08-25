@@ -25,22 +25,22 @@ export default {
     TheCounter,
     ChangeCounter,
     FavoriteValue,
-    UserAuth
+    UserAuth,
   },
   methods: {
     increment() {
       //this.$store.dispatch('increase', { value: 10 });
       this.$store.dispatch({
         type: 'counter/increase',
-        value: 10
+        value: 10,
       });
-    }
+    },
   },
   computed: {
     ...mapGetters({
-      auth: 'loggedIn'
-    })
-  }
+      auth: 'loggedIn',
+    }),
+  },
 };
 </script>
 

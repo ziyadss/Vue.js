@@ -9,8 +9,8 @@
 <script>
 export default {
   props: {
-    mode: { type: String, default: "default", required: false },
-    label: { type: String, default: "", required: false },
+    mode: { type: String, default: 'default', required: false },
+    label: { type: String, default: '', required: false },
   },
 };
 </script>

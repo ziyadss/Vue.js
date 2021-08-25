@@ -10,10 +10,10 @@
 
 <script>
 export default {
-  props: ["name", "rating"],
+  props: ['name', 'rating'],
   computed: {
     ratingClass() {
-      return "highlight rating--" + this.rating;
+      return 'highlight rating--' + this.rating;
     },
   },
 };

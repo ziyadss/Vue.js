@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import LearningResource from "./LearningResource.vue";
+import LearningResource from './LearningResource.vue';
 export default {
   components: {
     LearningResource,

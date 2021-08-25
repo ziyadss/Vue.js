@@ -4,5 +4,5 @@ export default {
   },
   increase(state, payload) {
     state.count += payload.value;
-  }
+  },
 };

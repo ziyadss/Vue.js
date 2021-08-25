@@ -14,6 +14,6 @@
 
 <script>
 export default {
-  props: ["fullName", "infoText", "role"],
+  props: ['fullName', 'infoText', 'role'],
 };
 </script>

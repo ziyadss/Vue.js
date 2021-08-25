@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import ErrorAlert from "./ErrorAlert.vue";
+import ErrorAlert from './ErrorAlert.vue';
 
 export default {
   components: {
@@ -29,7 +29,7 @@ export default {
   methods: {
     setGoal() {
       const enteredValue = this.$refs.typedGoal.value;
-      this.invalidInput = enteredValue === "";
+      this.invalidInput = enteredValue === '';
     },
     confirmError() {
       this.invalidInput = false;

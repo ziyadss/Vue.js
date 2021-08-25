@@ -5,5 +5,5 @@ export default {
   increase(context, payload) {
     payload.type = 'increase';
     context.commit(payload);
-  }
+  },
 };

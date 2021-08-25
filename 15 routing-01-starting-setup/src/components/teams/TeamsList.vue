@@ -16,9 +16,9 @@ import TeamsItem from './TeamsItem.vue';
 
 export default {
   components: {
-    TeamsItem
+    TeamsItem,
   },
-  inject: ['teams']
+  inject: ['teams'],
 };
 </script>
 

@@ -7,5 +7,6 @@ import BaseCard from './components/UI/BaseCard.vue';
 const app = createApp(App);
 
 app.component('BaseBadge', BaseBadge);
-app.component('BaseCard', BaseCard)
-app.mount('#app');[]
+app.component('BaseCard', BaseCard);
+app.mount('#app');
+[];

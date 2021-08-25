@@ -2,18 +2,18 @@ const app = Vue.createApp({
   data() {
     return {
       goals: [],
-      userInput: ''
-    }
+      userInput: '',
+    };
   },
   methods: {
     addGoal() {
       if (!this.userInput) return;
-      this.goals.push(this.userInput)
-      this.userInput = ''
+      this.goals.push(this.userInput);
+      this.userInput = '';
     },
     removeGoal(idx) {
-      this.goals.splice(idx, 1)
-    }
+      this.goals.splice(idx, 1);
+    },
   },
 });
 

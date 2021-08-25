@@ -13,7 +13,7 @@
     <CourseGoals #default="slotProps">
       <!-- <template #default="slotProps"> -->
       <h2>{{ slotProps.goal }}</h2>
-      <p>{{ slotProps["another-prop"] }}</p>
+      <p>{{ slotProps['another-prop'] }}</p>
       <!-- not rendered??^ -->
       <!-- </template> -->
     </CourseGoals>
@@ -24,15 +24,14 @@
     </keep-alive> -->
   </div>
 </template>
- 
 
 <script>
-import TheHeader from "./components/layout/TheHeader.vue";
+import TheHeader from './components/layout/TheHeader.vue';
 // import ActiveGoals from "./components/ActiveGoals.vue";
 // import ManageGoals from "./components/ManageGoals.vue";
-import BadgeList from "./components/BadgeList.vue";
-import UserInfo from "./components/UserInfo.vue";
-import CourseGoals from "./components/CourseGoals.vue";
+import BadgeList from './components/BadgeList.vue';
+import UserInfo from './components/UserInfo.vue';
+import CourseGoals from './components/CourseGoals.vue';
 
 export default {
   components: {
@@ -46,9 +45,9 @@ export default {
   data() {
     return {
       activeUser: {
-        name: "Ziyad Sameh",
-        description: "Site owner and admin",
-        role: "admin",
+        name: 'Ziyad Sameh',
+        description: 'Site owner and admin',
+        role: 'admin',
       },
       selectedComponent: null,
     };
