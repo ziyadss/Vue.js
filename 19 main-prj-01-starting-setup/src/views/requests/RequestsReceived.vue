@@ -1,3 +1,12 @@
+<template>
+  <h2>REQUESTS</h2>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style scoped>
 header {
   text-align: center;
 }
@@ -12,3 +21,4 @@ ul {
 h3 {
   text-align: center;
 }
+</style>

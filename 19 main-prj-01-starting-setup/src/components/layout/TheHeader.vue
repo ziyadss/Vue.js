@@ -1,3 +1,23 @@
+<template>
+  <header>
+    <nav>
+      <h1>
+        <router-link to="/coaches">Find a Coach</router-link>
+      </h1>
+
+      <ul>
+        <li><router-link to="/coaches">All Coaches</router-link></li>
+        <li><router-link to="/requests">Requests</router-link></li>
+      </ul>
+    </nav>
+  </header>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style scoped>
 header {
   width: 100%;
   height: 5rem;
@@ -56,3 +76,4 @@ header ul {
 li {
   margin: 0 0.5rem;
 }
+</style>

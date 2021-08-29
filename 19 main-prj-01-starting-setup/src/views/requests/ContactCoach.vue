@@ -1,3 +1,12 @@
+<template>
+  <h2>CONTACT</h2>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style scoped>
 form {
   margin: 1rem;
   border: 1px solid #ccc;
@@ -39,3 +48,4 @@ textarea:focus {
 .actions {
   text-align: center;
 }
+</style>

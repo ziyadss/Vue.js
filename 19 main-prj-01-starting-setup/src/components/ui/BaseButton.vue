@@ -1,3 +1,23 @@
+<template>
+  <button v-if="!to" :class="mode">
+    <slot>{{ text }}</slot>
+  </button>
+  <router-link v-else :to="to" :class="mode">
+    <slot>{{ text }}</slot>
+  </router-link>
+</template>
+
+<script>
+export default {
+  props: {
+    to: { type: String, default: null },
+    mode: { type: String, default: null },
+    text: { type: String, default: '' },
+  },
+};
+</script>
+
+<style scoped>
 button,
 a {
   text-decoration: none;
@@ -38,3 +58,4 @@ button:active {
 .outline:active {
   background-color: #edd2ff;
 }
+</style>
