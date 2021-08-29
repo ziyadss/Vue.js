@@ -9,7 +9,7 @@ module.exports = {
       entry: './src/main.js',
       template: './public/index.html',
       filename: 'index.html',
-      title: '19. The Main Project',
+      title: 'The Main Project',
     },
   },
 };
