@@ -3,8 +3,9 @@ import axios from '@/axios-instance';
 export default {
   async registerCoach(context, payload) {
     const id = context.rootGetters.userID;
+    const token = context.rootGetters.token;
 
-    await axios.put(`coaches/${id}.json`, payload);
+    await axios.put(`coaches/${id}.json?auth=${token}`, payload);
 
     payload.id = id;
     context.dispatch('becomeCoach', null, { root: true });

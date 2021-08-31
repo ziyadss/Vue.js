@@ -12,6 +12,19 @@
 import TheHeader from '@/components/layout/TheHeader';
 export default {
   components: { TheHeader },
+  created() {
+    this.$store.dispatch('fetchUser');
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    },
+  },
+  watch: {
+    loggedIn(newVal, oldVal) {
+      if (!newVal && oldVal) this.$router.push('/login');
+    },
+  },
 };
 </script>
 

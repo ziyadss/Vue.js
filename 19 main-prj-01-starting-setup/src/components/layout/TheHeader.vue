@@ -6,15 +6,42 @@
       </h1>
 
       <ul>
-        <li><router-link to="/coaches">All Coaches</router-link></li>
-        <li><router-link to="/requests">Requests</router-link></li>
+        <li>
+          <router-link to="/coaches">All Coaches</router-link>
+        </li>
+
+        <li v-if="isCoach">
+          <router-link to="/requests">Requests</router-link>
+        </li>
+
+        <li v-if="loggedIn">
+          <router-link to="." @click="logout">Log out</router-link>
+        </li>
+
+        <li v-else>
+          <router-link to="/login">Log in</router-link>
+        </li>
       </ul>
     </nav>
   </header>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    isCoach() {
+      return this.$store.getters.isCoach;
+    },
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+    },
+  },
+};
 </script>
 
 <style scoped>

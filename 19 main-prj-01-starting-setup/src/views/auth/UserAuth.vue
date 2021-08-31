@@ -101,7 +101,7 @@ export default {
       else return 'Sign up';
     },
     inactiveButtonText() {
-      if (this.mode === 'login') return "Don't have an account? Register here.";
+      if (this.mode === 'login') return "Don't have an account? Sign up here.";
       else return 'Already have an account? Log in here.';
     },
   },
@@ -122,8 +122,8 @@ export default {
       this.isLoading = true;
 
       try {
-        await this.$store.dispatch(this.mode, form);
-        this.$router.replace('/');
+        await this.$store.dispatch('authenticate', { mode: this.mode, form });
+        this.$router.replace(this.$route.query.redirect || '/');
       } catch (e) {
         this.error = e.message;
       }

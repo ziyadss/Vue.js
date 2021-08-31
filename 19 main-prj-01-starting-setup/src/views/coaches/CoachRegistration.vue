@@ -8,9 +8,16 @@
     </BaseDialog>
 
     <section>
-      <BaseCard>
+      <BaseCard v-if="loggedIn">
         <h2>Register as a coach now!</h2>
         <CoachForm @submit-data="saveData" />
+      </BaseCard>
+
+      <BaseCard v-else>
+        <p>You must be logged in to register as a coach.</p>
+        <div class="control">
+          <BaseButton text="Log in here" to="/login" />
+        </div>
       </BaseCard>
     </section>
   </div>
@@ -25,6 +32,11 @@ export default {
     return {
       error: false,
     };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    },
   },
   methods: {
     async saveData(data) {
@@ -42,4 +54,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.control {
+  display: flex;
+  justify-content: flex-end;
+}
+</style>

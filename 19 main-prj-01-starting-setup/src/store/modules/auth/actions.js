@@ -1,33 +1,53 @@
 import { axiosAuth as axios } from '@/axios-instance';
 
+var timer;
 export default {
-  becomeCoach(context) {
-    context.commit('becomeCoach');
-  },
-  async login(context, payload) {
+  async authenticate(context, payload) {
+    payload.form.returnSecureToken = true;
+    const modeURL = payload.mode === 'signup' ? 'signUp' : 'signInWithPassword';
+
     try {
       const { data } = await axios.post(
-        `:signInWithPassword?key=${process.env.VUE_APP_FIREBASE_KEY}`,
-        payload
+        `:${modeURL}?key=${process.env.VUE_APP_FIREBASE_KEY}`,
+        payload.form
       );
 
-      context.commit('setUser', data);
+      const expiresIn = parseInt(data.expiresIn) * 1000;
+      const userData = {
+        refreshToken: data.refreshToken,
+        userID: data.localId,
+        userToken: data.idToken,
+      };
+
+      timer = setTimeout(() => context.dispatch('logout'), expiresIn);
+
+      //data.email, data.displayName
+      localStorage.setItem('userData', JSON.stringify(userData));
+      localStorage.setItem('expiry', expiresIn + new Date().getTime());
+
+      context.commit('setUser', userData);
     } catch (e) {
       throw e.response.data.error || { message: 'UNKNOWN_ERROR' };
     }
   },
-  async signup(context, payload) {
-    payload.returnSecureToken = true;
+  fetchUser(context) {
+    const userData = JSON.parse(localStorage.getItem('user'));
+    if (!userData) return;
 
-    try {
-      const { data } = await axios.post(
-        `:signUp?key=${process.env.VUE_APP_FIREBASE_KEY}`,
-        payload
-      );
-
-      context.commit('setUser', data);
-    } catch (e) {
-      throw e.response.data.error || { message: 'UNKNOWN_ERROR' };
+    // if token has more than 1 min left
+    const expiresIn = localStorage.getItem('expiry') - new Date().getTime();
+    if (expiresIn > 1000 * 60) {
+      timer = setTimeout(() => context.dispatch('logout'), expiresIn);
+      context.commit('setUser', userData);
     }
+  },
+  logout(context) {
+    localStorage.removeItem('user');
+    context.commit('setUser', {
+      refreshToken: null,
+      userID: null,
+      userToken: null,
+    });
+    clearTimeout(timer);
   },
 };

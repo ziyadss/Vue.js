@@ -3,17 +3,17 @@
     <h2>Find Your Coach</h2>
 
     <span class="filter-option">
-      <input type="checkbox" id="frontend" checked @change="setFilter" />
+      <input type="checkbox" id="frontend" value="frontend" v-model="areas" />
       <label for="frontend">Frontend</label>
     </span>
 
     <span class="filter-option">
-      <input type="checkbox" id="backend" checked @change="setFilter" />
+      <input type="checkbox" id="backend" value="backend" v-model="areas" />
       <label for="backend">Backend</label>
     </span>
 
     <span class="filter-option">
-      <input type="checkbox" id="career" checked @change="setFilter" />
+      <input type="checkbox" id="career" value="career" v-model="areas" />
       <label for="career">Career</label>
     </span>
   </BaseCard>
@@ -21,20 +21,16 @@
 
 <script>
 export default {
-  emits: ['changed-filters'],
+  emits: ['update:filters'],
+  props: { filters: { type: Object, required: true } },
   data() {
     return {
-      filters: {
-        frontend: true,
-        backend: true,
-        career: true,
-      },
+      areas: [],
     };
   },
-  methods: {
-    setFilter(e) {
-      this.filters[e.target.id] = e.target.checked;
-      this.$emit('changed-filters', this.filters);
+  watch: {
+    areas(newValue) {
+      this.$emit('update:filters', { ...this.filters, areas: newValue });
     },
   },
 };

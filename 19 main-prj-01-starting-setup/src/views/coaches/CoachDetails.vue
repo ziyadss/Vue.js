@@ -9,11 +9,16 @@
 
     <section>
       <BaseCard>
-        <header>
+        <header v-if="!formOpen">
           <h2>Interested? Reach out now!</h2>
-          <BaseButton :to="contactLink" text="Contact" />
+          <div class="button-container">
+            <BaseButton :to="contactLink" text="Contact" />
+          </div>
         </header>
         <router-view />
+        <div v-if="formOpen" class="button-container">
+          <BaseButton @click="cancelContact" text="Cancel" />
+        </div>
       </BaseCard>
     </section>
 
@@ -39,7 +44,15 @@ export default {
       coach: null,
     };
   },
+  methods: {
+    cancelContact() {
+      this.$router.back();
+    },
+  },
   computed: {
+    formOpen() {
+      return this.$route.name === 'Contact';
+    },
     contactLink() {
       return `${this.$route.path}/contact`;
     },
@@ -63,3 +76,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+</style>

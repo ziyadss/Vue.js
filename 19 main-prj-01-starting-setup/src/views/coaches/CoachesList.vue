@@ -8,7 +8,7 @@
     </BaseDialog>
 
     <section>
-      <CoachFilter @changed-filters="setFilters" />
+      <CoachFilter v-model:filters="filters" />
     </section>
 
     <section>
@@ -43,24 +43,21 @@ export default {
   components: { CoachItem, CoachFilter },
   data() {
     return {
-      filters: {
-        frontend: true,
-        backend: true,
-        career: true,
-      },
+      filters: { areas: [] },
       isLoading: false,
       error: false,
     };
   },
   computed: {
     filteredCoaches() {
+      const id = this.$store.getters['userID'];
       return this.$store.getters['coaches/coaches'].filter((coach) => {
-        if (this.filters.frontend && coach.areas.includes('frontend'))
-          return true;
-        if (this.filters.backend && coach.areas.includes('backend'))
-          return true;
-        if (this.filters.career && coach.areas.includes('career')) return true;
-        return false;
+        if (coach.id === id) return false;
+
+        for (const area of this.filters.areas)
+          if (!coach.areas.includes(area)) return false;
+
+        return true;
       });
     },
     isCoach() {
@@ -71,9 +68,6 @@ export default {
     },
   },
   methods: {
-    setFilters(filters) {
-      this.filters = filters;
-    },
     async loadCoaches() {
       this.isLoading = true;
 

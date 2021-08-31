@@ -13,7 +13,8 @@ export default {
   },
   async fetchRequests(context) {
     const id = context.rootGetters.userID;
-    const { data } = await axios.get(`/requests/${id}.json`);
+    const token = context.rootGetters.token;
+    const { data } = await axios.get(`/requests/${id}.json?auth=${token}`);
 
     for (const key in data) data[key].id = key;
 

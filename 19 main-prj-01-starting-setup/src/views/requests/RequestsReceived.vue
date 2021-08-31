@@ -7,11 +7,11 @@
       </p>
     </BaseDialog>
 
-    <section>
+    <section v-if="isCoach">
       <BaseCard>
         <header><h2>Requests Received</h2></header>
 
-        <div class="controls">
+        <div class="control">
           <BaseButton text="Refresh" mode="outline" @click="loadRequests" />
         </div>
 
@@ -27,6 +27,14 @@
           />
         </ul>
         <h3 v-else>You haven't received any requests yet.</h3>
+      </BaseCard>
+    </section>
+    <section v-else>
+      <BaseCard>
+        <p>You have to register as a couch to get requests.</p>
+        <div class="control right">
+          <BaseButton text="Register" to="/register" />
+        </div>
       </BaseCard>
     </section>
   </div>
@@ -48,6 +56,9 @@ export default {
     },
     requests() {
       return this.$store.getters['requests/requests'];
+    },
+    isCoach() {
+      return this.$store.getters.isCoach;
     },
   },
   methods: {
@@ -88,8 +99,12 @@ h3 {
   text-align: center;
 }
 
-.controls {
+.control {
   display: flex;
   justify-content: center;
+}
+
+.right {
+  justify-content: flex-end;
 }
 </style>

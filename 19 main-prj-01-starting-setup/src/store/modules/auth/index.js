@@ -9,15 +9,10 @@ export default {
   mutations,
   state() {
     return {
-      userID: '-MiJpZaTj6enyJdB9UZ7',
-      isCoach: true,
-      idToken: null,
-      email: null,
+      name: null,
       refreshToken: null,
-      expiresIn: null,
-      localId: null,
+      userID: null,
+      userToken: null,
     };
   },
 };
-
-//"auth != null"

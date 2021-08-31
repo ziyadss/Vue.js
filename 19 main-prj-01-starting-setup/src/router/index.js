@@ -5,6 +5,7 @@ import home from './home';
 import notFound from './notFound';
 import register from './register';
 import requests from './requests';
+import store from '@/store';
 
 const routes = [
   home,
@@ -17,7 +18,22 @@ const routes = [
   notFound,
 ];
 
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+router.beforeEach((to, _from, next) => {
+  const needsAuth = to.meta.requiresAuth;
+  const needsUnauth = to.meta.requiresUnauth;
+  const loggedIn = store.getters.loggedIn;
+
+  if (needsAuth && !loggedIn)
+    return next({ path: '/login', query: { redirect: to.fullPath } });
+
+  if (needsUnauth && loggedIn) return next({ path: '/' });
+
+  return next();
+});
+
+export default router;
