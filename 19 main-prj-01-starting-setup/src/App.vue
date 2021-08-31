@@ -9,7 +9,11 @@
 </template>
 
 <script>
-import TheHeader from '@/components/layout/TheHeader';
+import { defineAsyncComponent } from 'vue';
+
+const TheHeader = defineAsyncComponent(() =>
+  import('@/components/layout/TheHeader')
+);
 export default {
   components: { TheHeader },
   created() {

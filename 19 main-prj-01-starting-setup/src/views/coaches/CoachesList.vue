@@ -36,9 +36,14 @@
 </template>
 
 <script>
-import CoachItem from '@/components/coaches/CoachItem';
-import CoachFilter from '@/components/coaches/CoachFilter';
+import { defineAsyncComponent } from 'vue';
 
+const CoachItem = defineAsyncComponent(() =>
+  import('@/components/coaches/CoachItem')
+);
+const CoachFilter = defineAsyncComponent(() =>
+  import('@/components/coaches/CoachFilter')
+);
 export default {
   components: { CoachItem, CoachFilter },
   data() {

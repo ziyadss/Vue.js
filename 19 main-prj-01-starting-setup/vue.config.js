@@ -6,12 +6,12 @@ module.exports = {
   lintOnSave: dev,
   // publicPath: dev ? '/' : '/vue/',
   // outputDir: 'vue',
-  // pages: {
-  //   index: {
-  //     entry: 'src/index/main.js',
-  //     template: 'public/index.html',
-  //     filename: 'index.html',
-  //     title: 'The Main Project',
-  //   },
-  // },
+  pages: {
+    index: {
+      entry: 'src/main.js',
+      template: 'public/index.html',
+      filename: 'index.html',
+      title: 'Find a Coach',
+    },
+  },
 };

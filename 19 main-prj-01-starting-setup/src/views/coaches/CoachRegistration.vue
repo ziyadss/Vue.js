@@ -24,8 +24,11 @@
 </template>
 
 <script>
-import CoachForm from '@/components/coaches/CoachForm';
+import { defineAsyncComponent } from 'vue';
 
+const CoachForm = defineAsyncComponent(() =>
+  import('@/components/coaches/CoachForm')
+);
 export default {
   components: { CoachForm },
   data() {

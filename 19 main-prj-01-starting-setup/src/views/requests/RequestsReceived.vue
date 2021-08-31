@@ -41,7 +41,11 @@
 </template>
 
 <script>
-import RequestItem from '@/components/requests/RequestItem';
+import { defineAsyncComponent } from 'vue';
+
+const RequestItem = defineAsyncComponent(() =>
+  import('@/components/requests/RequestItem')
+);
 export default {
   components: { RequestItem },
   data() {
