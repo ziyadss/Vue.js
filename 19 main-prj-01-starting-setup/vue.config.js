@@ -1,14 +1,15 @@
 /**
  * @type {import('@vue/cli-service').ProjectOptions}
  */
-
+const dev = process.env.NODE_ENV !== 'production';
 module.exports = {
-  lintOnSave: process.env.NODE_ENV !== 'production',
-  // publicPath: '',
+  lintOnSave: dev,
+  // publicPath: dev ? '/' : '/vue/',
+  // outputDir: 'vue',
   // pages: {
   //   index: {
-  //     entry: './src/main.js',
-  //     template: './public/index.html',
+  //     entry: 'src/index/main.js',
+  //     template: 'public/index.html',
   //     filename: 'index.html',
   //     title: 'The Main Project',
   //   },

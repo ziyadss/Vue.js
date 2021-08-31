@@ -1,4 +1,5 @@
 export default {
-  coaches: (state) => state.coaches,
-  hasCoaches: (state) => state.coaches && state.coaches.length > 0,
+  outOfDate: (state) => state.lastFetch < new Date().getTime() - 1000 * 60,
+  coaches: (state, _getters, _rootState, rootGetters) =>
+    state.coaches.filter((coach) => coach.id !== rootGetters.userID),
 };

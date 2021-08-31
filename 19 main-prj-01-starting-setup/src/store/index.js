@@ -1,19 +1,8 @@
 import { createStore } from 'vuex';
-import actions from './actions';
-import getters from './getters';
+import auth from './modules/auth';
 import coaches from './modules/coaches';
 import requests from './modules/requests';
-import mutations from './mutations';
 
-export default createStore({
-  state() {
-    return {
-      userID: 3,
-      isCoach: false,
-    };
-  },
-  mutations,
-  actions,
-  getters,
-  modules: { coaches, requests },
-});
+const modules = { auth, coaches, requests };
+
+export default createStore({ modules });

@@ -1,28 +1,41 @@
 <template>
-  <section>
-    <CoachFilter @changed-filters="setFilters" />
-  </section>
-  <section>
-    <BaseCard>
-      <div class="controls">
-        <BaseButton text="Refresh" mode="outline" />
-        <BaseButton v-if="!isCoach" text="Register as Coach" to="/register" />
-      </div>
+  <div>
+    <BaseDialog :show="error" title="An error occurred" @close="handleError">
+      <p>
+        Something went wrong while fetching coaches. Please try again or contact
+        support if the error persists.
+      </p>
+    </BaseDialog>
 
-      <ul v-if="hasCoaches">
-        <CoachItem
-          v-for="coach in filteredCoaches"
-          :key="coach.id"
-          v-bind="coach"
-        />
-      </ul>
-      <h3 v-else>No coaches found.</h3>
-    </BaseCard>
-  </section>
+    <section>
+      <CoachFilter @changed-filters="setFilters" />
+    </section>
+
+    <section>
+      <BaseCard>
+        <div class="controls">
+          <BaseButton text="Refresh" mode="outline" @click="loadCoaches" />
+          <BaseButton v-if="!isCoach" text="Register as Coach" to="/register" />
+        </div>
+
+        <div v-if="isLoading">
+          <BaseSpinner />
+        </div>
+
+        <ul v-else-if="hasCoaches">
+          <CoachItem
+            v-for="coach in filteredCoaches"
+            :key="coach.id"
+            v-bind="coach"
+          />
+        </ul>
+        <h3 v-else>No coaches found.</h3>
+      </BaseCard>
+    </section>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import CoachItem from '@/components/coaches/CoachItem';
 import CoachFilter from '@/components/coaches/CoachFilter';
 
@@ -35,11 +48,13 @@ export default {
         backend: true,
         career: true,
       },
+      isLoading: false,
+      error: false,
     };
   },
   computed: {
     filteredCoaches() {
-      return this.coaches.filter((coach) => {
+      return this.$store.getters['coaches/coaches'].filter((coach) => {
         if (this.filters.frontend && coach.areas.includes('frontend'))
           return true;
         if (this.filters.backend && coach.areas.includes('backend'))
@@ -51,17 +66,36 @@ export default {
     isCoach() {
       return this.$store.getters.isCoach;
     },
-    ...mapGetters('coaches', ['coaches', 'hasCoaches']),
+    hasCoaches() {
+      return this.filteredCoaches.length > 0;
+    },
   },
   methods: {
     setFilters(filters) {
       this.filters = filters;
     },
+    async loadCoaches() {
+      this.isLoading = true;
+
+      try {
+        await this.$store.dispatch('coaches/fetchCoaches');
+      } catch (error) {
+        this.error = true;
+      }
+
+      this.isLoading = false;
+    },
+    handleError() {
+      this.error = false;
+    },
+  },
+  created() {
+    if (this.$store.getters['coaches/outOfDate']) this.loadCoaches();
   },
 };
 </script>
 
-<style>
+<style scoped>
 ul {
   list-style: none;
   margin: 0;

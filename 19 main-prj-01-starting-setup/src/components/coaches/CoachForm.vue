@@ -8,6 +8,7 @@
         v-model.trim="firstName.value"
         placeholder="First Name"
         @blur="clearValidity('firstName')"
+        required
       />
       <p v-if="!firstName.valid">First Name may not be empty.</p>
     </div>
@@ -20,6 +21,7 @@
         v-model.trim="lastName.value"
         @blur="clearValidity('lastName')"
         placeholder="Last Name"
+        required
       />
       <p v-if="!lastName.valid">Last Name may not be empty.</p>
     </div>
@@ -32,6 +34,7 @@
         @blur="clearValidity('description')"
         placeholder="Description"
         rows="5"
+        required
       />
       <p v-if="!description.valid">Description may not be empty.</p>
     </div>
@@ -44,6 +47,7 @@
         v-model="rate.value"
         placeholder="Rate"
         @blur="clearValidity('rate')"
+        required
       />
       <p v-if="!rate.valid">Rate must be greater than 0.</p>
     </div>
@@ -103,8 +107,18 @@ export default {
       description: { value: '', valid: true },
       rate: { value: null, valid: true },
       areas: { value: [], valid: true },
-      validForm: true,
     };
+  },
+  computed: {
+    validForm() {
+      return (
+        this.firstName.valid &&
+        this.lastName.valid &&
+        this.description.valid &&
+        this.rate.valid &&
+        this.areas.valid
+      );
+    },
   },
   methods: {
     clearValidity(el) {
@@ -120,13 +134,6 @@ export default {
       this.rate.valid = this.rate.value && this.rate.value > 0;
 
       this.areas.valid = this.areas.value.length !== 0;
-
-      this.validForm =
-        this.firstName.valid &&
-        this.lastName.valid &&
-        this.description.valid &&
-        this.rate.valid &&
-        this.areas.valid;
     },
     submitForm() {
       this.validateForm();

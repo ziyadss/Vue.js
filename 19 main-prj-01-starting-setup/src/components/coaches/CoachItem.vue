@@ -15,7 +15,7 @@
 <script>
 export default {
   props: {
-    id: { type: Number, required: true },
+    id: { required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     hourlyRate: { type: Number, required: true },

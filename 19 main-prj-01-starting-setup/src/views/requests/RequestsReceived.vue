@@ -1,9 +1,75 @@
 <template>
-  <h2>REQUESTS</h2>
+  <div>
+    <BaseDialog :show="error" title="An error occurred" @close="handleError">
+      <p>
+        Something went wrong while fetching your requests. Please try again or
+        contact support if the error persists.
+      </p>
+    </BaseDialog>
+
+    <section>
+      <BaseCard>
+        <header><h2>Requests Received</h2></header>
+
+        <div class="controls">
+          <BaseButton text="Refresh" mode="outline" @click="loadRequests" />
+        </div>
+
+        <div v-if="isLoading">
+          <BaseSpinner />
+        </div>
+
+        <ul v-else-if="hasRequests">
+          <RequestItem
+            v-for="request in requests"
+            :key="request.id"
+            v-bind="request"
+          />
+        </ul>
+        <h3 v-else>You haven't received any requests yet.</h3>
+      </BaseCard>
+    </section>
+  </div>
 </template>
 
 <script>
-export default {};
+import RequestItem from '@/components/requests/RequestItem';
+export default {
+  components: { RequestItem },
+  data() {
+    return {
+      isLoading: true,
+      error: false,
+    };
+  },
+  computed: {
+    hasRequests() {
+      return this.$store.getters['requests/hasRequests'];
+    },
+    requests() {
+      return this.$store.getters['requests/requests'];
+    },
+  },
+  methods: {
+    async loadRequests() {
+      this.isLoading = true;
+
+      try {
+        await this.$store.dispatch('requests/fetchRequests');
+      } catch (error) {
+        this.error = true;
+      }
+
+      this.isLoading = false;
+    },
+    handleError() {
+      this.error = false;
+    },
+  },
+  created() {
+    this.loadRequests();
+  },
+};
 </script>
 
 <style scoped>
@@ -20,5 +86,10 @@ ul {
 
 h3 {
   text-align: center;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
 }
 </style>

@@ -1,27 +1,34 @@
 <template>
-  <section>
-    <BaseCard>
-      <h2>{{ fullName }}</h2>
-      <h3>${{ rate }}/hour</h3>
-    </BaseCard>
-  </section>
+  <div>
+    <section>
+      <BaseCard>
+        <h2>{{ fullName }}</h2>
+        <h3>${{ rate }}/hour</h3>
+      </BaseCard>
+    </section>
 
-  <section>
-    <BaseCard>
-      <header>
-        <h2>Interested? Reach out now!</h2>
-        <BaseButton :to="contactLink" text="Contact" />
-      </header>
-      <router-view />
-    </BaseCard>
-  </section>
+    <section>
+      <BaseCard>
+        <header>
+          <h2>Interested? Reach out now!</h2>
+          <BaseButton :to="contactLink" text="Contact" />
+        </header>
+        <router-view />
+      </BaseCard>
+    </section>
 
-  <section>
-    <BaseCard>
-      <BaseBadge v-for="area in areas" :key="area" :type="area" :title="area" />
-      <p>{{ description }}</p>
-    </BaseCard>
-  </section>
+    <section>
+      <BaseCard>
+        <BaseBadge
+          v-for="area in areas"
+          :key="area"
+          :type="area"
+          :title="area"
+        />
+        <p>{{ description }}</p>
+      </BaseCard>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -51,7 +58,7 @@ export default {
   },
   created() {
     this.coach = this.$store.getters['coaches/coaches'].find(
-      (coach) => coach.id === parseInt(this.id)
+      (coach) => coach.id === this.id
     );
   },
 };
