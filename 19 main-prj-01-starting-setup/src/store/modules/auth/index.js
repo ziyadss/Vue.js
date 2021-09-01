@@ -13,6 +13,7 @@ export default {
       refreshToken: null,
       userID: null,
       userToken: null,
+      userEmail: null,
     };
   },
 };

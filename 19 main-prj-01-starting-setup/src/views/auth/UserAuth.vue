@@ -73,8 +73,8 @@ export default {
   props: { mode: { type: String, default: 'login' } },
   data() {
     return {
-      email: { value: '', valid: true },
-      password: { value: '', valid: true },
+      email: { value: null, valid: true },
+      password: { value: null, valid: true },
       re: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       error: null,
       isLoading: false,

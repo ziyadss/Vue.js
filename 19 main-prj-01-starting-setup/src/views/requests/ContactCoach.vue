@@ -50,8 +50,8 @@ export default {
   props: { id: { required: true } },
   data() {
     return {
-      email: { value: '', valid: true },
-      message: { value: '', valid: true },
+      email: { value: this.$store.getters.email, valid: true },
+      message: { value: null, valid: true },
       re: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       error: false,
     };
@@ -76,7 +76,7 @@ export default {
 
       const payload = {
         form: { email: this.email.value, message: this.message.value },
-        coachID: parseInt(this.id),
+        coachID: this.id,
       };
 
       try {

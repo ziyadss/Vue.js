@@ -12,7 +12,7 @@ export default {
   props: {
     to: { type: String, default: null },
     mode: { type: String, default: null },
-    text: { type: String, default: '' },
+    text: { type: String, default: null },
   },
 };
 </script>

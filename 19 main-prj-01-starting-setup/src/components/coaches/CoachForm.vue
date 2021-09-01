@@ -102,9 +102,9 @@ export default {
   emits: ['submit-data'],
   data() {
     return {
-      firstName: { value: '', valid: true },
-      lastName: { value: '', valid: true },
-      description: { value: '', valid: true },
+      firstName: { value: null, valid: true },
+      lastName: { value: null, valid: true },
+      description: { value: null, valid: true },
       rate: { value: null, valid: true },
       areas: { value: [], valid: true },
     };
@@ -125,15 +125,15 @@ export default {
       this[el].valid = true;
     },
     validateForm() {
-      this.firstName.valid = this.firstName.value !== '';
+      this.firstName.valid = this.firstName.value.length > 0;
 
-      this.lastName.valid = this.lastName.value !== '';
+      this.lastName.valid = this.lastName.value.length > 0;
 
-      this.description.valid = this.description.value !== '';
+      this.description.valid = this.description.value.length > 0;
 
       this.rate.valid = this.rate.value && this.rate.value > 0;
 
-      this.areas.valid = this.areas.value.length !== 0;
+      this.areas.valid = this.areas.value.length > 0;
     },
     submitForm() {
       this.validateForm();

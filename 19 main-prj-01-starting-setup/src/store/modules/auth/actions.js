@@ -17,6 +17,7 @@ export default {
         refreshToken: data.refreshToken,
         userID: data.localId,
         userToken: data.idToken,
+        userEmail: data.email,
       };
 
       timer = setTimeout(() => context.dispatch('logout'), expiresIn);
@@ -31,7 +32,7 @@ export default {
     }
   },
   fetchUser(context) {
-    const userData = JSON.parse(localStorage.getItem('user'));
+    const userData = JSON.parse(localStorage.getItem('userData'));
     if (!userData) return;
 
     // if token has more than 1 min left
@@ -42,7 +43,8 @@ export default {
     }
   },
   logout(context) {
-    localStorage.removeItem('user');
+    localStorage.removeItem('userData');
+    localStorage.removeItem('expiry');
     context.commit('setUser', {
       refreshToken: null,
       userID: null,
