@@ -1,7 +1,7 @@
 <template>
   <TheHeader />
 
-  <router-view v-slot="slotProps">
+  <router-view v-if="!isFetching" v-slot="slotProps">
     <transition name="route" mode="out-in">
       <component :is="slotProps.Component" />
     </transition>
@@ -16,8 +16,15 @@ const TheHeader = defineAsyncComponent(() =>
 );
 export default {
   components: { TheHeader },
-  created() {
-    this.$store.dispatch('fetchUser');
+  data() {
+    return {
+      isFetching: true,
+    };
+  },
+  async created() {
+    await this.$store.dispatch('fetchUser');
+    await this.$store.dispatch('coaches/fetchCoaches');
+    this.isFetching = false;
   },
   computed: {
     loggedIn() {

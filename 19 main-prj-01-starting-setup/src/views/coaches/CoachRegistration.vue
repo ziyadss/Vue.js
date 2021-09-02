@@ -8,16 +8,26 @@
     </BaseDialog>
 
     <section>
-      <BaseCard v-if="loggedIn">
-        <h2>Register as a coach now!</h2>
-        <CoachForm @submit-data="saveData" />
+      <BaseCard v-if="!loggedIn">
+        <p>You must be logged in to register as a coach.</p>
+        <div class="control">
+          <BaseButton text="Log in here" to="/login?redirect=/requests" />
+        </div>
+      </BaseCard>
+
+      <BaseCard v-else-if="isCoach">
+        <p>
+          You have already registered as a coach.<br />
+          Would you like to see your incoming requests?
+        </p>
+        <div class="control">
+          <BaseButton text="ٌRequests" to="/requests" />
+        </div>
       </BaseCard>
 
       <BaseCard v-else>
-        <p>You must be logged in to register as a coach.</p>
-        <div class="control">
-          <BaseButton text="Log in here" to="/login" />
-        </div>
+        <h2>Register as a coach now!</h2>
+        <CoachForm @submit-data="saveData" />
       </BaseCard>
     </section>
   </div>
@@ -39,6 +49,9 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.getters.loggedIn;
+    },
+    isCoach() {
+      return this.$store.getters.isCoach;
     },
   },
   methods: {
