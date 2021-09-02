@@ -1,10 +1,13 @@
 <template>
   <li>
     <h3>{{ fullName }}</h3>
+
     <h4>${{ hourlyRate }}/hour</h4>
+
     <div>
       <BaseBadge v-for="area in areas" :type="area" :title="area" :key="area" />
     </div>
+
     <div class="actions">
       <BaseButton :to="contactLink" text="Contact" mode="outline" />
       <BaseButton :to="detailsLink" text="View Details" />

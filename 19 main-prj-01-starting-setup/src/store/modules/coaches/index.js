@@ -8,9 +8,6 @@ export default {
   getters,
   mutations,
   state() {
-    return {
-      lastFetch: null,
-      coaches: [],
-    };
+    return { lastFetch: null, coaches: [] };
   },
 };

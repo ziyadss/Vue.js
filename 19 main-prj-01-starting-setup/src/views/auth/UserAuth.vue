@@ -1,8 +1,8 @@
 <template>
   <div>
     <BaseDialog fixed :show="isLoading" title="Authenticating">
-      <BaseSpinner
-    /></BaseDialog>
+      <BaseSpinner />
+    </BaseDialog>
 
     <BaseDialog :show="!!error" title="An error occurred" @close="handleError">
       <p v-if="emailExists">
@@ -10,15 +10,19 @@
         If you forgot your password, reset it
         <router-link to="/forgot">here</router-link>.
       </p>
+
       <p v-else-if="manyAttempts">Too many attempts. Please try again later.</p>
+
       <p v-else-if="invalidPassword">
         The password you entered is incorrect. Please try again.
       </p>
+
       <p v-else-if="invalidEmail">
         The email you entered is not associated with an account.<br />
         Would you like to
         <router-link to="/signup">sign up</router-link> instead?
       </p>
+
       <p v-else>
         An error occurred. Please try again or contact support if the error
         persists.
@@ -29,6 +33,7 @@
       <form @submit.prevent="submitForm">
         <div class="form-control" :class="{ errors: !email.valid }">
           <label for="email">Email address</label>
+
           <input
             type="email"
             id="email"
@@ -37,11 +42,13 @@
             @blur="clearValidity('email')"
             required
           />
+
           <p v-if="!email.valid">Please enter a valid email address</p>
         </div>
 
         <div class="form-control" :class="{ errors: !password.valid }">
           <label for="password">Password</label>
+
           <input
             type="password"
             id="password"
@@ -50,10 +57,12 @@
             @blur="clearValidity('password')"
             required
           />
+
           <p v-if="!password.valid">
             Password must be at least 8 characters long.
           </p>
         </div>
+
         <div class="controls">
           <BaseButton :text="activeButtonText" />
           <BaseButton

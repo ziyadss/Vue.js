@@ -15,6 +15,7 @@
       <BaseCard>
         <div class="controls">
           <BaseButton text="Refresh" mode="outline" @click="loadCoaches" />
+
           <BaseButton v-if="!isCoach" text="Register as Coach" to="/register" />
         </div>
 
@@ -29,6 +30,7 @@
             v-bind="coach"
           />
         </ul>
+
         <h3 v-else>No coaches found.</h3>
       </BaseCard>
     </section>
@@ -47,11 +49,7 @@ const CoachFilter = defineAsyncComponent(() =>
 export default {
   components: { CoachItem, CoachFilter },
   data() {
-    return {
-      filters: { areas: [] },
-      isLoading: false,
-      error: false,
-    };
+    return { filters: { areas: [] }, isLoading: false, error: false };
   },
   computed: {
     filteredCoaches() {

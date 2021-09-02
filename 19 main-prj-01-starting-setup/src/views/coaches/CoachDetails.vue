@@ -15,7 +15,9 @@
             <BaseButton :to="contactLink" text="Contact" />
           </div>
         </header>
+
         <router-view />
+
         <div v-if="formOpen" class="button-container">
           <BaseButton @click="cancelContact" text="Cancel" />
         </div>
@@ -40,9 +42,7 @@
 export default {
   props: { id: { required: true } },
   data() {
-    return {
-      coach: null,
-    };
+    return { coach: null };
   },
   methods: {
     cancelContact() {

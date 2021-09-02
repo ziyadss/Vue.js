@@ -1,3 +1,4 @@
+import store from '@/store';
 import { createRouter, createWebHistory } from 'vue-router';
 import { login, signup } from './auth';
 import { coach, coaches } from './coaches';
@@ -5,7 +6,6 @@ import home from './home';
 import notFound from './notFound';
 import register from './register';
 import requests from './requests';
-import store from '@/store';
 
 const routes = [
   home,

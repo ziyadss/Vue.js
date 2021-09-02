@@ -1,4 +1,4 @@
-const UserAuth = () => import('@/views/auth/UserAuth.vue');
+const UserAuth = () => import('@/views/auth/UserAuth');
 
 export const login = {
   path: '/login',

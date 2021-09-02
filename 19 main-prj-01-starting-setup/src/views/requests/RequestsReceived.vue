@@ -26,9 +26,11 @@
             v-bind="request"
           />
         </ul>
+
         <h3 v-else>You haven't received any requests yet.</h3>
       </BaseCard>
     </section>
+
     <section v-else>
       <BaseCard>
         <p>You have to register as a couch to get requests.</p>
@@ -49,10 +51,7 @@ const RequestItem = defineAsyncComponent(() =>
 export default {
   components: { RequestItem },
   data() {
-    return {
-      isLoading: true,
-      error: false,
-    };
+    return { isLoading: true, error: false };
   },
   computed: {
     hasRequests() {

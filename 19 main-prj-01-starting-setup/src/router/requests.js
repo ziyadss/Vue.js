@@ -1,6 +1,8 @@
+const RequestsReceived = () => import('@/views/requests/RequestsReceived');
+
 export default {
   path: '/requests',
   name: 'Requests',
-  component: () => import('@/views/requests/RequestsReceived.vue'),
+  component: RequestsReceived,
   meta: { requiresAuth: true },
 };

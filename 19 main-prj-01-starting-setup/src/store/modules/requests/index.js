@@ -8,8 +8,6 @@ export default {
   getters,
   mutations,
   state() {
-    return {
-      requests: [],
-    };
+    return { requests: [] };
   },
 };

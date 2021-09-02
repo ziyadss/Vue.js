@@ -2,6 +2,7 @@
   <form @submit.prevent="submitForm">
     <div class="form-control" :class="{ invalid: !firstName.valid }">
       <label for="firstname">First Name</label>
+
       <input
         type="text"
         id="firstname"
@@ -10,11 +11,13 @@
         @blur="clearValidity('firstName')"
         required
       />
+
       <p v-if="!firstName.valid">First Name may not be empty.</p>
     </div>
 
     <div class="form-control" :class="{ invalid: !lastName.valid }">
       <label for="lastname">Last Name</label>
+
       <input
         type="text"
         id="lastname"
@@ -23,11 +26,13 @@
         placeholder="Last Name"
         required
       />
+
       <p v-if="!lastName.valid">Last Name may not be empty.</p>
     </div>
 
     <div class="form-control" :class="{ invalid: !description.valid }">
       <label for="description">Description</label>
+
       <textarea
         id="description"
         v-model.trim="description.value"
@@ -36,11 +41,13 @@
         rows="5"
         required
       />
+
       <p v-if="!description.valid">Description may not be empty.</p>
     </div>
 
     <div class="form-control" :class="{ invalid: !rate.valid }">
       <label for="rate">Rate</label>
+
       <input
         type="number"
         id="rate"
@@ -49,11 +56,13 @@
         @blur="clearValidity('rate')"
         required
       />
+
       <p v-if="!rate.valid">Rate must be greater than 0.</p>
     </div>
 
     <div class="form-control" :class="{ invalid: !areas.valid }">
       <h3>Areas of Expertise</h3>
+
       <div class="checkbox-group">
         <div class="checkbox">
           <input
@@ -88,11 +97,14 @@
           <label for="career">Career Advisory</label>
         </div>
       </div>
+
       <p v-if="!areas.valid">Please select at least one area of expertise.</p>
     </div>
+
     <p v-if="!validForm">
       Please fix the above errors and submit the form again.
     </p>
+
     <BaseButton text="Register" />
   </form>
 </template>
@@ -138,8 +150,6 @@ export default {
     submitForm() {
       this.validateForm();
 
-      if (!this.validForm) return;
-
       const coach = {
         firstName: this.firstName.value,
         lastName: this.lastName.value,
@@ -147,7 +157,8 @@ export default {
         hourlyRate: this.rate.value,
         areas: this.areas.value,
       };
-      this.$emit('submit-data', coach);
+
+      if (this.validForm) this.$emit('submit-data', coach);
     },
   },
 };

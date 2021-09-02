@@ -1,4 +1,1 @@
-export default {
-  path: '/',
-  redirect: '/coaches',
-};
+export default { path: '/', redirect: '/coaches' };

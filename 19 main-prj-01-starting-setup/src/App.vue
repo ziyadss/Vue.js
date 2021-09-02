@@ -1,6 +1,5 @@
 <template>
   <TheHeader />
-
   <router-view v-if="!isFetching" v-slot="slotProps">
     <transition name="route" mode="out-in">
       <component :is="slotProps.Component" />
@@ -17,9 +16,7 @@ const TheHeader = defineAsyncComponent(() =>
 export default {
   components: { TheHeader },
   data() {
-    return {
-      isFetching: true,
-    };
+    return { isFetching: true };
   },
   async created() {
     await this.$store.dispatch('fetchUser');

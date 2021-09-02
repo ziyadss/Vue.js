@@ -10,6 +10,7 @@
     <section>
       <BaseCard v-if="!loggedIn">
         <p>You must be logged in to register as a coach.</p>
+
         <div class="control">
           <BaseButton text="Log in here" to="/login?redirect=/requests" />
         </div>
@@ -20,6 +21,7 @@
           You have already registered as a coach.<br />
           Would you like to see your incoming requests?
         </p>
+
         <div class="control">
           <BaseButton text="ٌRequests" to="/requests" />
         </div>
@@ -27,6 +29,7 @@
 
       <BaseCard v-else>
         <h2>Register as a coach now!</h2>
+
         <CoachForm @submit-data="saveData" />
       </BaseCard>
     </section>
@@ -42,9 +45,7 @@ const CoachForm = defineAsyncComponent(() =>
 export default {
   components: { CoachForm },
   data() {
-    return {
-      error: false,
-    };
+    return { error: false };
   },
   computed: {
     loggedIn() {

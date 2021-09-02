@@ -1,5 +1,7 @@
+const NotFound = () => import('@/views/NotFound.vue');
+
 export default {
   name: 'not-found',
   path: '/:notFound(.*)',
-  component: () => import('@/views/NotFound.vue'),
+  component: () => NotFound,
 };

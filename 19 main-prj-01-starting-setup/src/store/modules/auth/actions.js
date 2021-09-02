@@ -14,15 +14,16 @@ export default {
 
       const expiresIn = parseInt(data.expiresIn) * 1000;
       const userData = {
+        displayName: data.displayName,
         refreshToken: data.refreshToken,
+        userEmail: data.email,
+
         userID: data.localId,
         userToken: data.idToken,
-        userEmail: data.email,
       };
 
       timer = setTimeout(() => context.dispatch('logout'), expiresIn);
 
-      //data.email, data.displayName
       localStorage.setItem('userData', JSON.stringify(userData));
       localStorage.setItem('expiry', expiresIn + new Date().getTime());
 
@@ -46,7 +47,9 @@ export default {
     localStorage.removeItem('userData');
     localStorage.removeItem('expiry');
     context.commit('setUser', {
+      displayName: null,
       refreshToken: null,
+      userEmail: null,
       userID: null,
       userToken: null,
     });

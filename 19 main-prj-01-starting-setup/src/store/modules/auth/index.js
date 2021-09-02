@@ -9,11 +9,11 @@ export default {
   mutations,
   state() {
     return {
-      name: null,
+      displayName: null,
       refreshToken: null,
+      userEmail: null,
       userID: null,
       userToken: null,
-      userEmail: null,
     };
   },
 };

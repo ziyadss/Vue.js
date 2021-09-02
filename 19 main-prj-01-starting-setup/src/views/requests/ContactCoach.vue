@@ -10,6 +10,7 @@
     <form @submit.prevent="submitForm">
       <div class="form-control" :class="{ errors: !email.valid }">
         <label for="email">Email address</label>
+
         <input
           type="email"
           id="email"
@@ -18,11 +19,13 @@
           @blur="clearValidity('email')"
           required
         />
+
         <p v-if="!email.valid">Please enter a valid email address</p>
       </div>
 
       <div class="form-control" :class="{ errors: !message.valid }">
         <label for="message">Message</label>
+
         <textarea
           id="message"
           rows="3"
@@ -31,6 +34,7 @@
           @blur="clearValidity('message')"
           required
         />
+
         <p v-if="!message.valid">Message may not be empty.</p>
       </div>
 

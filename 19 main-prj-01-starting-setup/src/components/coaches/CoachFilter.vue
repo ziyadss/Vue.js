@@ -24,9 +24,7 @@ export default {
   emits: ['update:filters'],
   props: { filters: { type: Object, required: true } },
   data() {
-    return {
-      areas: [],
-    };
+    return { areas: [] };
   },
   watch: {
     areas(newValue) {
