@@ -1,0 +1,23 @@
+<template>
+  <UserAlert v-if="alertIsVisible" title="Add a User?" @close="hideAlert">
+    <p>Do you want to continue with adding a user?</p>
+  </UserAlert>
+  <section>
+    <h2>Add a User</h2>
+    <button @click="showAlert">Add User</button>
+  </section>
+</template>
+
+<script>
+import useAlert from '@/hooks/alert';
+import UserAlert from './UserAlert';
+
+export default {
+  components: { UserAlert },
+  setup() {
+    const { alertIsVisible, showAlert, hideAlert } = useAlert();
+
+    return { alertIsVisible, showAlert, hideAlert };
+  },
+};
+</script>
