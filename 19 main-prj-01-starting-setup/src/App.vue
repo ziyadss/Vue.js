@@ -18,10 +18,12 @@ export default {
   data() {
     return { isFetching: true };
   },
-  async created() {
-    await this.$store.dispatch('fetchUser');
-    await this.$store.dispatch('coaches/fetchCoaches');
-    this.isFetching = false;
+  created() {
+    this.$store.dispatch('fetchUser');
+    this.$store
+      .dispatch('coaches/fetchCoaches')
+      .catch(() => {})
+      .finally(() => (this.isFetching = false));
   },
   computed: {
     loggedIn() {

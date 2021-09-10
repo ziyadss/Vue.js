@@ -65,16 +65,13 @@ export default {
     },
   },
   methods: {
-    async loadRequests() {
+    loadRequests() {
       this.isLoading = true;
 
-      try {
-        await this.$store.dispatch('requests/fetchRequests');
-      } catch (error) {
-        this.error = true;
-      }
-
-      this.isLoading = false;
+      this.$store
+        .dispatch('requests/fetchRequests')
+        .catch(() => (this.error = true))
+        .finally(() => (this.isLoading = false));
     },
     handleError() {
       this.error = false;

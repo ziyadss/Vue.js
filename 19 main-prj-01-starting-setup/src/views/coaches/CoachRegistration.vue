@@ -56,13 +56,11 @@ export default {
     },
   },
   methods: {
-    async saveData(data) {
-      try {
-        await this.$store.dispatch('coaches/registerCoach', data);
-        this.$router.replace('/coaches');
-      } catch (e) {
-        this.error = true;
-      }
+    saveData(data) {
+      this.$store
+        .dispatch('coaches/registerCoach', data)
+        .then(() => this.$router.replace('/coaches'))
+        .catch(() => (this.error = true));
     },
     handleError() {
       this.error = false;

@@ -73,7 +73,7 @@ export default {
       this.email.valid = this.re.test(this.email.value);
       this.message.valid = this.message.value.length !== 0;
     },
-    async submitForm() {
+    submitForm() {
       this.validateForm();
 
       if (!this.validForm) return;
@@ -83,12 +83,10 @@ export default {
         coachID: this.id,
       };
 
-      try {
-        await this.$store.dispatch('requests/contactCoach', payload);
-        this.$router.replace('/coaches');
-      } catch (err) {
-        this.error = true;
-      }
+      this.$store
+        .dispatch('requests/contactCoach', payload)
+        .then(() => this.$router.replace('/coaches'))
+        .catch(() => (this.error = true));
     },
     handleError() {
       this.error = false;

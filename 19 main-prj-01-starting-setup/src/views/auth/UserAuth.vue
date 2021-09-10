@@ -122,7 +122,7 @@ export default {
       this.email.valid = this.re.test(this.email.value);
       this.password.valid = this.password.value.length > 7;
     },
-    async submitForm() {
+    submitForm() {
       this.validateForm();
 
       if (!this.validForm) return;
@@ -130,14 +130,11 @@ export default {
       const form = { email: this.email.value, password: this.password.value };
       this.isLoading = true;
 
-      try {
-        await this.$store.dispatch('authenticate', { mode: this.mode, form });
-        this.$router.replace(this.$route.query.redirect || '/');
-      } catch (e) {
-        this.error = e.message;
-      }
-
-      this.isLoading = false;
+      this.$store
+        .dispatch('authenticate', { mode: this.mode, form })
+        .then(() => this.$router.replace(this.$route.query.redirect || '/'))
+        .catch((e) => (this.error = e.message))
+        .finally(() => (this.isLoading = false));
     },
     handleError() {
       this.error = null;

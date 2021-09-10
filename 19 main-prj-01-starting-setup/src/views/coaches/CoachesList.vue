@@ -71,16 +71,13 @@ export default {
     },
   },
   methods: {
-    async loadCoaches() {
+    loadCoaches() {
       this.isLoading = true;
 
-      try {
-        await this.$store.dispatch('coaches/fetchCoaches');
-      } catch (error) {
-        this.error = true;
-      }
-
-      this.isLoading = false;
+      this.$store
+        .dispatch('coaches/fetchCoaches')
+        .catch(() => (this.error = true))
+        .finally(() => (this.isLoading = false));
     },
     handleError() {
       this.error = false;

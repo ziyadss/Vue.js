@@ -2,35 +2,33 @@ import { axiosAuth as axios } from '@/axios-instance';
 
 var timer;
 export default {
-  async authenticate(context, payload) {
+  authenticate(context, payload) {
     payload.form.returnSecureToken = true;
     const modeURL = payload.mode === 'signup' ? 'signUp' : 'signInWithPassword';
 
-    try {
-      const { data } = await axios.post(
-        `:${modeURL}?key=${process.env.VUE_APP_FIREBASE_KEY}`,
-        payload.form
-      );
+    return axios
+      .post(`:${modeURL}?key=${process.env.VUE_APP_FIREBASE_KEY}`, payload.form)
+      .then(({ data }) => {
+        const expiresIn = parseInt(data.expiresIn) * 1000;
+        const userData = {
+          displayName: data.displayName,
+          refreshToken: data.refreshToken,
+          userEmail: data.email,
 
-      const expiresIn = parseInt(data.expiresIn) * 1000;
-      const userData = {
-        displayName: data.displayName,
-        refreshToken: data.refreshToken,
-        userEmail: data.email,
+          userID: data.localId,
+          userToken: data.idToken,
+        };
 
-        userID: data.localId,
-        userToken: data.idToken,
-      };
+        timer = setTimeout(() => context.dispatch('logout'), expiresIn);
 
-      timer = setTimeout(() => context.dispatch('logout'), expiresIn);
+        localStorage.setItem('userData', JSON.stringify(userData));
+        localStorage.setItem('expiry', expiresIn + new Date().getTime());
 
-      localStorage.setItem('userData', JSON.stringify(userData));
-      localStorage.setItem('expiry', expiresIn + new Date().getTime());
-
-      context.commit('setUser', userData);
-    } catch (e) {
-      throw e.response.data.error || { message: 'UNKNOWN_ERROR' };
-    }
+        context.commit('setUser', userData);
+      })
+      .catch((e) => {
+        throw e.response.data.error || { message: 'UNKNOWN_ERROR' };
+      });
   },
   fetchUser(context) {
     const userData = JSON.parse(localStorage.getItem('userData'));
