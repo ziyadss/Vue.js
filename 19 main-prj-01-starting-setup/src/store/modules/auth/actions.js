@@ -9,7 +9,7 @@ export default {
     return axios
       .post(`:${modeURL}?key=${process.env.VUE_APP_FIREBASE_KEY}`, form)
       .then(({ data }) => {
-        const expiresIn = parseInt(data.expiresIn) * 1000;
+        const expiresIn = data.expiresIn * 1000;
         const userData = {
           displayName: data.displayName,
           refreshToken: data.refreshToken,
