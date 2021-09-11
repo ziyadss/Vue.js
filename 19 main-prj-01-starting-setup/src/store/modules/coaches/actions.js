@@ -6,15 +6,15 @@ export default {
     const token = context.rootGetters.token;
 
     return axios.put(`coaches/${id}.json?auth=${token}`, payload).then(() => {
-      payload.id = id;
+      const coach = { id, ...payload };
       context.dispatch('becomeCoach', null, { root: true });
-      context.commit('registerCoach', payload);
+      context.commit('registerCoach', coach);
     });
   },
 
   fetchCoaches(context) {
     return axios.get('/coaches.json').then(({ data }) => {
-      for (const key in data) data[key].id = key;
+      for (const id in data) data[id] = { id, ...data[id] };
 
       const coaches = data ? Object.values(data) : [];
 

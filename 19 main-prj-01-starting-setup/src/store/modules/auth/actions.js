@@ -3,11 +3,11 @@ import { axiosAuth as axios } from '@/axios-instance';
 var timer;
 export default {
   authenticate(context, payload) {
-    payload.form.returnSecureToken = true;
+    const form = { returnSecureToken: true, ...payload.form };
     const modeURL = payload.mode === 'signup' ? 'signUp' : 'signInWithPassword';
 
     return axios
-      .post(`:${modeURL}?key=${process.env.VUE_APP_FIREBASE_KEY}`, payload.form)
+      .post(`:${modeURL}?key=${process.env.VUE_APP_FIREBASE_KEY}`, form)
       .then(({ data }) => {
         const expiresIn = parseInt(data.expiresIn) * 1000;
         const userData = {
